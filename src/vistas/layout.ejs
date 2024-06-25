@@ -14,14 +14,46 @@
 
 <body class="container-fluid py-5">
 
-    <%- body %>
+    <%- include ('parciales/header.ejs') %>
+
+    <main>
+        <div class="toast-container" style="z-index: 11">
+            <% if (success_msg.length !=0) { %>
+                <div class="toast text-white bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <strong class="me-auto">Éxito</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        <%= success_msg %>
+                    </div>
+                </div>
+            <% } %>
+    
+            <% if (error_msg.length !=0) { %>
+                <div class="toast text-white bg-danger" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <strong class="me-auto">Error</strong>
+                        <small class="text-muted">2 seconds ago</small>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        <%= error_msg %>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+
+        <%- body %>
+    </main>
 
     <footer class="fixed-bottom bg-light text-center py-3">
         <div class="container">
             <p class="mb-0">© Julio-2024 CaC - Grupo 22.</p>
         </div>
     </footer>
-    
+
     <script src="/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

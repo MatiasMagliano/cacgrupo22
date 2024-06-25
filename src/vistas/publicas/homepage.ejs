@@ -1,84 +1,80 @@
-<%- include ('../parciales/header.ejs') %>
+<div class="main-flex">
+    <aside>
+        <h5 class="lead mb-0 py-3">Filtro de productos</h5>
+        <form id="filtro">
+            <div class="mb-3">
+                <label for="marca" class="form-label-sm">Marca</label>
+                <input type="text" name="marca" id="marca" class="form-control form-control-sm">
+            </div>
 
-<main>
-    <div class="main-flex">
-        <aside>
-            <h5 class="lead mb-0 py-3">Filtro de productos</h5>
-            <form id="filtro">
-                <div class="mb-3">
-                    <label for="marca" class="form-label-sm">Marca</label>
-                    <input type="text" name="marca" id="marca" class="form-control form-control-sm">
-                </div>
+            <div class="mb-3">
+                <label for="nombre" class="form-label-sm">Modelo</label>
+                <input type="text" name="nombre" id="nombre" class="form-control form-control-sm">
+            </div>
 
-                <div class="mb-3">
-                    <label for="nombre" class="form-label-sm">Modelo</label>
-                    <input type="text" name="nombre" id="nombre" class="form-control form-control-sm">
-                </div>
+            <div class="mb-3">
+                <label for="precioMin" class="form-label-sm">Precio mínimo:</label>
+                <input type="text" name="precioMin" id="precioMin" class="form-control form-control-sm">
+            </div>
 
-                <div class="mb-3">
-                    <label for="precioMin" class="form-label-sm">Precio mínimo:</label>
-                    <input type="text" name="precioMin" id="precioMin" class="form-control form-control-sm">
-                </div>
+            <div class="mb-3">
+                <label for="precioMax" class="form-label-sm">Precio máximo:</label>
+                <input type="text" name="precioMax" id="precioMax" class="form-control form-control-sm">
+            </div>
 
-                <div class="mb-3">
-                    <label for="precioMax" class="form-label-sm">Precio máximo:</label>
-                    <input type="text" name="precioMax" id="precioMax" class="form-control form-control-sm">
-                </div>
+            <div class="mb-3">
+                <label for="orden" class="form-label-sm">Orden:</label>
+                <select name="orden" id="orden" class="form-select form-select-sm">
+                    <option value="ASC" selected>Ascendente</option>
+                    <option value="DESC">Descendente</option>
+                </select>
+            </div>
 
-                <div class="mb-3">
-                    <label for="orden" class="form-label-sm">Orden:</label>
-                    <select name="orden" id="orden" class="form-select form-select-sm">
-                        <option value="ASC" selected>Ascendente</option>
-                        <option value="DESC">Descendente</option>
-                    </select>
-                </div>
+            <div class="d-flex justify-content-end">
+                <input type="submit" value="Aplicar filtros" class="btn btn-sm btn-outline-secondary m-1">
+                <a href="/" class="btn btn-sm btn-secondary m-1">
+                    <i class="bi bi-trash"></i>
+                </a>
+            </div>
+        </form>
+    </aside>
 
-                <div class="d-flex justify-content-end">
-                    <input type="submit" value="Aplicar filtros" class="btn btn-sm btn-outline-secondary m-1">
-                    <a href="/" class="btn btn-sm btn-secondary m-1">
-                        <i class="bi bi-trash"></i>
-                    </a>
-                </div>
-            </form>
-        </aside>
-
-        <section id="seccion-productos" class="overflow-auto">
-            <% productos.forEach(producto => { %>
-                <div class="card m-3">
-                    <div class="d-flex justify-content-between p-3">
-                        <p class="lead mb-0">Oferta del día <strong><%- producto.marca %></strong></p>
-                        <div class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong" style="width: 35px; height: 35px;">
-                            <p class="text-white mb-0 small">
-                                <a href="/detalles.html?<%- producto.id %>">Ver</a>
-                            </p>
-                        </div>
-                    </div>
-                    <!-- <img src="${producto.thumbnail_url}" class="card-img-top" alt="${producto.nombre}"/> -->
-                    
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <p class="small"><a href="#" class="text-muted"><%- producto.categoria %></a></p>
-                            <p class="small text-danger"><s>USD<%- producto.precio %></s></p>
-                        </div>
-
-                        <div class="d-flex justify-content-between mb-3">
-                            <h5 class="mb-0"><%- producto.nombre %></h5>
-                            <h5 class="text-dark mb-0">USD<%- (producto.precio - producto.precio * 0.1).toFixed(2) %></h5>
-                        </div>
-
-                        <div class="d-flex justify-content-between mb-2">
-                            <p class="text-muted mb-0">Disponibles: <span class="fw-bold"><%- producto.precio %></span></p>
-                        </div>
-
-                        <div class="d-flex justify-content-between mb-2">
-                            <p><%- producto.descripcion %></p>
-                        </div>
+    <section id="seccion-productos" class="overflow-auto">
+        <% productos.forEach(producto => { %>
+            <div class="card m-3">
+                <div class="d-flex justify-content-between p-3">
+                    <p class="lead mb-0">Oferta del día <strong><%- producto.marca %></strong></p>
+                    <div class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong" style="width: 35px; height: 35px;">
+                        <p class="text-white mb-0 small">
+                            <a href="/detalles.html?<%- producto.id %>">Ver</a>
+                        </p>
                     </div>
                 </div>
-                <% }) %>
-        </section>
-    </div>
-</main>
+                <!-- <img src="${producto.thumbnail_url}" class="card-img-top" alt="${producto.nombre}"/> -->
+                
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <p class="small"><a href="#" class="text-muted"><%- producto.categoria %></a></p>
+                        <p class="small text-danger"><s>USD<%- producto.precio %></s></p>
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-3">
+                        <h5 class="mb-0"><%- producto.nombre %></h5>
+                        <h5 class="text-dark mb-0">USD<%- (producto.precio - producto.precio * 0.1).toFixed(2) %></h5>
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-2">
+                        <p class="text-muted mb-0">Disponibles: <span class="fw-bold"><%- producto.precio %></span></p>
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-2">
+                        <p><%- producto.descripcion %></p>
+                    </div>
+                </div>
+            </div>
+            <% }) %>
+    </section>
+</div>
 
 <script>
     /* *** SECCION DE FILTROS *** */
