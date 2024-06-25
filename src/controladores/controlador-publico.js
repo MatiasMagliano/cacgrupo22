@@ -23,7 +23,6 @@ export class ControladorPublico {
         try {
             res.render(
                 path.resolve(VIEWS, "publicas", "login"), {
-                    titulo: "Ingreso de usuarios registrados"
                 }
             );
         } catch (error) {
@@ -35,7 +34,6 @@ export class ControladorPublico {
         try {
             res.render(
                 path.resolve(VIEWS, "publicas", "registro"), {
-                    titulo: "Registro de nuevos usuarios"
                 }
             );
         } catch (error) {
