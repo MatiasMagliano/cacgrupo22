@@ -1,0 +1,31 @@
+{
+  "name": "cacgrupo22",
+  "version": "1.0.0",
+  "description": "Proyecto BACKEND del Grupo22 para CaC, full-stack con NODEJS",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MatiasMagliano/cacgrupo22.git"
+  },
+  "author": "Fernando Pequeño, Daniel Cuello, Axel Cuevas, Matías Magliano",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MatiasMagliano/cacgrupo22/issues"
+  },
+  "homepage": "https://github.com/MatiasMagliano/cacgrupo22#readme",
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-ejs-layouts": "^2.5.1",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.10.1"
+  }
+}
