@@ -6,6 +6,7 @@ import jwt from 'jsonwebtoken';
 
 // modelos necesarios
 import { Usuario } from "../modelos/user.js"
+import { name } from 'ejs';
 const modeloUsuario = new Usuario();
 
 export class ControladorAuth {
@@ -24,7 +25,7 @@ export class ControladorAuth {
             }
 
             // Verificar la contraseña
-            const passwordValida = await ModeloUsuario.verificarContrasenia(password, usuario.password);
+            const passwordValida = await modeloUsuario.verificarContrasenia(password, usuario.password);
             if (!passwordValida) {
                 req.flash('error_msg', '¡Nombre de usuario o contraseña incorrectos!');
                 return res.redirect('/login');
@@ -57,10 +58,7 @@ export class ControladorAuth {
             const { nombre, username, password } = req.body;
 
             // Comprobar si el nombre de usuario ya existe
-            const [existingUsers] = await pool.query(
-                'SELECT id FROM users WHERE LOWER(username) = LOWER(?)',
-                [username]
-            );
+            const [existingUsers] = await modeloUsuario.findByUsername(username);
 
             if (existingUsers.length) {
                 req.flash('error_msg', 'Este nombre de usuario ya está en uso!');
@@ -71,10 +69,7 @@ export class ControladorAuth {
             const hashedPassword = await bcrypt.hash(password, 10);
 
             // Insertar el nuevo usuario en la base de datos
-            await pool.query(
-                'INSERT INTO users (name, username, password, registered) VALUES (?, ?, ?, NOW())',
-                [nombre, username, hashedPassword]
-            );
+            await modeloUsuario.createUser(name, username, hashedPassword);    
 
             // Generar un token JWT
             const token = jwt.sign(
@@ -108,6 +103,18 @@ export class ControladorAuth {
             
         }
     }
+
+    async addProduct(req, res) {
+        try {
+            res.render(
+                path.resolve(VIEWS, "auth", "formAgregarProducto")
+            );
+        } catch (error) {
+            console.error('Error de servidor en "/dashboard/agregarproducto":', error);
+            req.flash('error_msg', 'Error en el servidor, por favor intente de nuevo más tarde.');
+            return res.redirect('/dashboard');
+        }
+    };
 
     async nuevoProducto(req, res) {
         const { marca, nombre, precio, descripcion, stock, categoria } = req.body;

@@ -11,9 +11,11 @@ const router = express.Router();
 const controladorAuth = new ControladorAuth();
 
 // declaración de las rutas públicas con inclusión de middleware si es requerido
-router.post("/login", controladorAuth.dashboard);
+router.post("/login", controladorAuth.login);
 router.post("/registro", controladorAuth.registro);
 router.get("/dashboard", Autenticado, controladorAuth.dashboard);
+router.get("/dashboard/agregarproducto", Autenticado, controladorAuth.addProduct);
+router.post("/dashboard/agregarproducto", Autenticado, controladorAuth.nuevoProducto);
 
 export {
     router

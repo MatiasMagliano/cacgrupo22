@@ -26,7 +26,7 @@ export class Usuario {
             );
             return result.insertId;
         } catch (error) {
-            throw new Error('Error al crear el usuario');
+            return new Error('Error al crear el usuario');
         }
     }
 
