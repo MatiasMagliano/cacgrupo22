@@ -2,13 +2,9 @@ import { pool } from "../config/app-config.js";
 
 export class Producto {
 
-    constructor() {
-        // constantes a declarar
-    }
-
     async getProductos(parametros) {
         try {
-            let consulta = 'SELECT * FROM productos'
+            let consulta = 'SELECT productos.*, categorias.nombre AS categoria FROM `productos` INNER JOIN categorias ON productos.categoria_id = categorias.id'
             let whereClause = ''
             let valores = []
 

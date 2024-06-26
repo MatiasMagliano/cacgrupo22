@@ -7,14 +7,20 @@
             </button>
             <div class="collapse navbar-collapse" id="hamburguesa">
                 <ul class="navbar-nav me-auto">
-                    <!-- ELEMENTOS DEL MENU -->
-                    <li class="nav-item active" aria-current="page">
-                        <a class="nav-link" href="/">Inicio</a>
-                    </li>
+                    <!-- ELEMENTOS DEL MENU (según login) -->
+                    <% if(typeof user  !== "undefined") { %>
+                        <li class="nav-item active" aria-current="page">
+                            <a class="nav-link" href="/">Inicio</a>
+                        </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Últimos posts</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/dashboard/agregarproducto">Agregar producto</a>
+                        </li>
+                    <% } else { %>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">OTROS LINKS</a>
+                        </li>
+                    <% } %>
                 </ul>
             
                 <!-- MENU DE USUARIO FORMULARIO DE BÚSQUEDA A LA DERECHA -->
