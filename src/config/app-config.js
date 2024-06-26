@@ -12,8 +12,10 @@ const VIEWS = path.resolve(process.cwd(), "src", "vistas");
 
 // variables JWT y cookies de sesión
 const cookie = {
-    name: process.env.COOKIE_NAME,
-    secret: process.env.JWT_SECRET
+    nombre: process.env.COOKIE_NAME,
+    secret: process.env.JWT_SECRET,
+    expiracion: process.env.JWT_EXPIRES,
+    exp_cookie: process.env.COOKIE_EXPIRES
 }
 
 
@@ -37,10 +39,15 @@ pool.getConnection()
         console.error('Error de conexión a la base de datos: ', err);
     });
 
-// paso a disponibilidad de todas las constantes
+const appdevsatus = {
+    status: process.env.APP_DEV_STATUS
+}
+
+// paso a disponibilidad de todas las constantes globales
 export {
     APP_PORT,
     VIEWS,
     pool,
-    cookie
+    cookie,
+    appdevsatus
 };

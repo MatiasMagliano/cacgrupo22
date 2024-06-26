@@ -19,7 +19,7 @@
             
                 <!-- MENU DE USUARIO FORMULARIO DE BÚSQUEDA A LA DERECHA -->
                 <ul class="navbar-nav ms-auto bg-dark">
-                    <% if(typeof(user) !== "undefined") { %>
+                    <% if(typeof user  !== "undefined") { %>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <%- user.nombre %>

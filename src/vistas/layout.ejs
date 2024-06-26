@@ -12,40 +12,9 @@
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
 </head>
 
-<body class="container-fluid py-5">
-
-    <%- include ('parciales/header.ejs') %>
-
-    <main>
-        <div class="toast-container" style="z-index: 11">
-            <% if (success_msg.length !=0) { %>
-                <div class="toast text-white bg-success" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header">
-                        <strong class="me-auto">Éxito</strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                    </div>
-                    <div class="toast-body">
-                        <%= success_msg %>
-                    </div>
-                </div>
-            <% } %>
+<body class="container-fluid py-5">        
     
-            <% if (error_msg.length !=0) { %>
-                <div class="toast text-white bg-danger" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header">
-                        <strong class="me-auto">Error</strong>
-                        <small class="text-muted">2 seconds ago</small>
-                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                    </div>
-                    <div class="toast-body">
-                        <%= error_msg %>
-                    </div>
-                </div>
-            <% } %>
-        </div>
-
-        <%- body %>
-    </main>
+    <%- body %>
 
     <footer class="fixed-bottom bg-light text-center py-3">
         <div class="container">
@@ -54,6 +23,35 @@
     </footer>
 
     <script src="/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const alertElements = document.querySelectorAll('.alert-dismissible');
+
+        alertElements.forEach(alert => {
+            // Configurar altura y opacidad iniciales
+            alert.style.transition = 'opacity 0.5s, height 0.5s';
+            alert.style.opacity = 1;
+            alert.style.height = alert.scrollHeight + 'px';
+
+            // Esperar 2 segundos antes de iniciar el fade out
+            setTimeout(() => {
+                // Reducir la opacidad a 0 en 2 segundos (2000 ms)
+                alert.style.transition = 'opacity 5s';
+                alert.style.opacity = 0;
+
+                // Después de 2 segundos (2000 ms), iniciar el slide up
+                setTimeout(() => {
+                    // Ajustar el transition para el slide up
+                    alert.style.transition = 'height 0.5s';
+                    alert.style.height = 0;
+
+                    // Después de 500 ms, cerrar la alerta (removerla del DOM)
+                    setTimeout(() => {
+                        alert.style.display = 'none'; // Alternativa: alert.remove() para quitarla completamente del DOM
+                    }, 500);
+                }, 2000);
+            }, 2000);
+        });
+    </script>    
 </body>
 
 </html>
