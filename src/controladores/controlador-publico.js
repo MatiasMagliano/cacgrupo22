@@ -19,6 +19,17 @@ export class ControladorPublico {
         }
     }
 
+    async detalle(req, res) {
+        try {
+            // res.render(
+            //     path.resolve(VIEWS, "publicas", "homepage"), {
+            //         productos: productos
+            //     });
+        } catch (error) {
+            throw error;
+        }
+    }
+
     async login(req, res) {
         try {
             res.render(

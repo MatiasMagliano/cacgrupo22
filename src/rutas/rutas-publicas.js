@@ -11,6 +11,7 @@ const controladorPublico = new ControladorPublico();
 
 // declaración de las rutas públicas
 router.get("/", controladorPublico.index);
+router.get("/detalle/:id", controladorPublico.detalle);
 router.get("/login", controladorPublico.login);
 router.get("/registro", controladorPublico.registro);
 
