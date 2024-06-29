@@ -42,6 +42,11 @@ img {
     object-fit: contain;
 }
 
+/* *** FORMULARIO NUEVO PRODUCTO *** */
+.descripcion {
+    height: 5rem;
+}
+
 .gradient-custom-2 {
     /* fallback for old browsers */
     background: #fccb90;

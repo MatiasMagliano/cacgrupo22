@@ -7,31 +7,28 @@ export class Usuario {
     async findByUsername(username) {
         try {
             const [rows] = await pool.query('SELECT * FROM users WHERE username = ?', [username]);
-            if (rows.length > 0) {
-                return rows[0];
-            }
-            return null;
+            return rows;
         } catch (error) {
             throw new Error('Error al buscar el usuario por nombre de usuario');
         }
     }
 
     // Método para crear un nuevo usuario
-    async createUser({ name, username, password }) {
-        const hashedPassword = await bcrypt.hash(password, 10);
+    async createUser(nombre, username, hashedPassword) {
         try {
             const [result] = await pool.query(
                 'INSERT INTO users (name, username, password, registered) VALUES (?, ?, ?, NOW())',
-                [name, username, hashedPassword]
+                [nombre, username, hashedPassword]
             );
-            return result.insertId;
+            console.log("resultados de INSERT INTO: ", result)
+            return result;
         } catch (error) {
             return new Error('Error al crear el usuario');
         }
     }
 
     // Método para verificar la contraseña de un usuario
-    async verificarContrasenia(inputPassword, storedPassword) {
+    async verifyPassword(inputPassword, storedPassword) {
         return bcrypt.compare(inputPassword, storedPassword);
     }
 }

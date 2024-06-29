@@ -14,7 +14,7 @@ const VIEWS = path.resolve(process.cwd(), "src", "vistas");
 const cookie = {
     nombre: process.env.COOKIE_NAME,
     secret: process.env.JWT_SECRET,
-    expiracion: process.env.JWT_EXPIRES,
+    expiracion: process.env.JWT_EXPIRES_IN,
     exp_cookie: process.env.COOKIE_EXPIRES
 }
 

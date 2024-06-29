@@ -13,12 +13,29 @@ export const Autenticado = (req, res, next) => {
 
     try {
         const decoded = jwt.verify(token, cookie.secret);
+
+        // RENOVACIÓN AUTOMÁTICA DEL TOKEN (por ejemplo, dentro de 5 minutos)
+        const ahora = Math.floor(Date.now() / 1000);
+        const tokenExpiry = decoded.exp;
+        const timeToExpiry = tokenExpiry - ahora;
+
+        if (timeToExpiry < 300) {
+            // Genera un nuevo token
+            const newToken = jwt.sign({ id: decoded.id, username: decoded.username }, cookie.secret, { expiresIn: cookie.expiracion });
+            res.cookie('token', newToken, { httpOnly: true });
+        }
+
         req.user = decoded;
         next();
     } catch (err) {
         console.error('Error al verificar el token JWT:', err);
-        req.flash('error_msg', 'Sesión no válida. Por favor, inicia sesión nuevamente.');
-        return res.redirect('/login');
+        if (err.name === 'TokenExpiredError') {
+          req.flash('error_msg', 'Sesión vencida. Por favor, inicia sesión nuevamente.');
+          return res.redirect('/login');
+      } else {
+          req.flash('error_msg', 'Error al verificar el token. Por favor, inicia sesión nuevamente.');
+          return res.redirect('/login');
+      }
     }
 };
 
