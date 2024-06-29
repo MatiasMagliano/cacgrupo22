@@ -1,0 +1,97 @@
+<div class="card rounded-3 text-black">
+    <div class="row g-0">
+        <div class="col-lg-12">
+            <div class="card-body p-md-5 mx-md-4">
+
+                <p class="mb-3">Por favor ingrese los datos necesarios marcados con un <i class="bi bi-asterisk"></i>.</p>
+
+                <form action="/dashboard/agregarproducto" method="post" enctype="multipart/form-data">
+
+                    <div class="row d-sm-block">
+                        
+                        <!-- MARCA -->
+                        <div class="col-sm-5 float-start">
+                            <div class="form-outline input-group mb-4">
+                                <span class="input-group-text" id="basic-addon1">
+                                    <i class="bi bi-asterisk"></i>
+                                </span>
+                                <input type="text" id="marca" name="marca" class="form-control"
+                                    placeholder="Marca del producto" />
+                            </div>
+                        </div>
+
+                        <!-- NOMBRE -->
+                        <div class="col-sm-5 float-start">
+                            <div class="form-outline input-group mb-4">
+                                <span class="input-group-text" id="basic-addon2">
+                                    <i class="bi bi-asterisk"></i>
+                                </span>
+                                <input type="text" id="nombre" name="nombre" class="form-control"
+                                    placeholder="Nombre del producto" />
+                            </div>
+                        </div>
+
+                        <!-- PRECIO -->
+                        <div class="col-sm-2 float-end">
+                            <div class="form-outline input-group mb-4">
+                                <span class="input-group-text" id="basic-addon3">
+                                    <i class="bi bi-asterisk"></i>
+                                </span>
+                                <input type="number" id="precio" min="0" name="precio" step="0.01" class="form-control"
+                                    placeholder="Precio" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CATEGORIA -->
+                    <div class="row d-sm-block">
+                        <div class="col-sm-8 float-start">
+                            <div class="form-outline input-group mb-4">
+                                <span class="input-group-text" id="basic-addon4">
+                                    <i class="bi bi-asterisk"></i>
+                                </span>
+                                <select name="categoria" id="categoria" class="form-select">
+                                    <option value="none" selected>Seleccione una categoría...</option>
+                                    <% categorias.forEach(categoria => { %>
+                                        <option value="<%- categoria.id %>"><%- categoria.nombre %></option>
+                                    <% }) %>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- STOCK -->
+                        <div class="col-sm-4 float-end">
+                            <div class="form-outline input-group">
+                                <span class="input-group-text" id="basic-addon5">
+                                    <i class="bi bi-asterisk"></i>
+                                </span>
+                                <input type="number" min="0" name="stock" id="stock" class="form-control" placeholder="Stock">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DESCRIPCION -->
+                    <div class="row d-sm-block">
+                        <div class="col">
+                            <div class="form-outline input-group mb-5">
+                                <span class="input-group-text" id="basic-addon6">
+                                    <i class="bi bi-asterisk"></i>
+                                </span>
+                                <textarea class="form-control descripcion" placeholder="Descripción del producto" name="descripcion" id="descripcion"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- IMAGEN -->
+                     <hr>
+                    <label for="foto" class="form-label">Foto del producto</label>
+                    <input class="form-control form-outline mb-5" type="file" name="foto" id="foto">
+
+                    <div class="text-center pt-1 mb-3 pb-1">
+                        <input class="btn btn-outline-secondary mb-3" type="submit" value="Guardar">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
