@@ -38,7 +38,7 @@ export class Producto {
                 consulta += ` ORDER BY productos.precio ${parametros.orden};`
             }
 
-            console.log(consulta);
+            console.log("Consulta del modelo", consulta, valores)
             const [rows] = await pool.query(consulta, valores);
 
             if (rows.length === 0) {

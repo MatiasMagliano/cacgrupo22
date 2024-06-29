@@ -12,7 +12,9 @@ export class ControladorPublico {
         try {
             res.render(
                 path.resolve(VIEWS, "publicas", "homepage"), {
-                    productos: productos
+                    productos: productos, // la lista de productos
+                    vistaEdit: false, // visibiliza el botón de edición
+                    clearfilter: req.url // fija la url de limpiado de form de filtros
                 });
         } catch (error) {
             throw error;
